@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/P1LL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/P1IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/P1UNTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="P1Username" />
+
+            <TextView
+                android:id="@+id/P1GPTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="P1GP" />
+
+            <TextView
+                android:id="@+id/P1WinLoseTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loser"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".05"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="VS"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/newGameBT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="PlayAgain" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/P2LL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/P1LL"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/P2IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/P2UNTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Finding User..." />
+
+            <TextView
+                android:id="@+id/P2GPTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="P2GP"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/P2WinLoseTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loser"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

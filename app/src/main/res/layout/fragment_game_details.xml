@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/gameDetailsIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/gameDetailsGameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameDetailsIV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/gameTitle"
+        android:textAlignment="center" />
+
+    <TextView
+
+        android:id="@+id/gameDetailsFranchiseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameDetailsGameTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/gameTitle"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/gameDetailsPlatformTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gameDetailsFranchiseTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/gameTitle"
+        android:textAlignment="center" />
+    <Button
+        android:id="@+id/PlayGameBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join Match"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/gameDetailsPlatformTV"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
+</layout>

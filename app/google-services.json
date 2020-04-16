@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "676964597829",
+    "firebase_url": "https://project-phoenix-e107e.firebaseio.com",
+    "project_id": "project-phoenix-e107e",
+    "storage_bucket": "project-phoenix-e107e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676964597829:android:82fdedc2e55a1143f0632c",
+        "android_client_info": {
+          "package_name": "com.example.projectphoenix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676964597829-u126kcf5et7lgur0m1u19s6ipcbsdmsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC--cfLaUAFyPFXjBkEyZ4tjX1LirXQAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676964597829-u126kcf5et7lgur0m1u19s6ipcbsdmsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

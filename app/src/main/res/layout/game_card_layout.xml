@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:elevation="15dp"
+    android:layout_marginEnd="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/gameIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/gameIcon"
+            android:paddingStart="20dp"
+            android:paddingEnd="5dp"
+            android:textSize="20sp"
+            android:text="@string/gameTitle" />
+
+        <TextView
+            android:id="@+id/franchiseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleTV"
+            android:layout_toEndOf="@id/gameIcon"
+            android:paddingStart="20dp"
+            android:paddingEnd="5dp"
+            android:textSize="15sp"
+            android:text="@string/gameFranchise" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/gameIcon"
+            android:layout_below="@id/franchiseTV"
+            android:id="@+id/platformTV"
+            android:paddingStart="20dp"
+            android:paddingEnd="5dp"
+            android:textSize="15sp"
+            android:text="@string/platform"/>
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

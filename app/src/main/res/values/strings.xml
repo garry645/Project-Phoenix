@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Project Phoenix</string>
+    <string name="emailHint">Email:</string>
+    <string name="passwordHint">Password:</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="usernameHint">Username:</string>
+    <string name="ageHint">Age:</string>
+    <string name="username">Username</string>
+    <string name="gamerPoints">GamerPoints</string>
+    <string name="games">Games</string>
+    <string name="tournaments">Tournaments</string>
+    <string name="gameFranchise">GameFranchise</string>
+    <string name="gameTitle">GameTitle</string>
+    <string name="platform">Platform</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="apply_now">Apply Now</string>
+    <string name="become_a_developer">Become a Developer!</string>
+    <string name="logout">Logout</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="franchiseHint">Franchise:</string>
+    <string name="platformHint">Platform:</string>
+    <string name="submit_application">Submit Application</string>
+    <string name="add_new_game">Add New Game</string>
+</resources>
