@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/gameScreenFragment">
 
@@ -8,7 +9,8 @@
         android:id="@+id/loginFragment"
         android:name="com.example.projectphoenix.LoginFragment"
         android:label="LoginFragment"
-        android:title="Title">
+        android:title="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
@@ -20,7 +22,9 @@
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.example.projectphoenix.SignupFragment"
-        android:label="SignupFragment">
+        android:label="Sign Up"
+
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -33,46 +37,93 @@
         android:id="@+id/gameScreenFragment"
         android:name="com.example.projectphoenix.GameScreenFragment"
         android:label="Games"
-        android:title="title">
+        android:title="title"
+        tools:layout="@layout/fragment_game_screen">
         <action
             android:id="@+id/action_gameScreenFragment_to_tournamentsFragment"
             app:destination="@id/tournamentsFragment" />
-        <action
-            android:id="@+id/action_gameScreenFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_gameScreenFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
         <action
             android:id="@+id/action_gameScreenFragment_to_gameDevApplicationFragment"
             app:destination="@id/gameDevApplicationFragment" />
+        <action
+            android:id="@+id/action_gameScreenFragment_to_listDevAppsFragment"
+            app:destination="@id/listDevAppsFragment" />
+        <action
+            android:id="@+id/action_gameScreenFragment_to_addGameFragment"
+            app:destination="@id/addGameFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/tournamentsFragment"
         android:name="com.example.projectphoenix.TournamentsFragment"
-        android:label="Tournaments" >
-        <action
-            android:id="@+id/action_tournamentsFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+        android:label="Tournaments"
+        tools:layout="@layout/fragment_tournaments">
         <action
             android:id="@+id/action_tournamentsFragment_to_gameDevApplicationFragment"
             app:destination="@id/gameDevApplicationFragment" />
+        <action
+            android:id="@+id/action_tournamentsFragment_to_addTournamentFragment"
+            app:destination="@id/addTournamentFragment" />
+        <action
+            android:id="@+id/action_tournamentsFragment_to_tournamentDetailsFragment"
+            app:destination="@id/tournamentDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/gameDetailsFragment"
         android:name="com.example.projectphoenix.GameDetailsFragment"
-        android:label="GameDetailsFragment" >
+        android:label="Game Details"
+        tools:layout="@layout/fragment_game_details">
         <action
             android:id="@+id/action_gameDetailsFragment_to_playGameFragment"
             app:destination="@id/playGameFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/playGameFragment"
         android:name="com.example.projectphoenix.PlayGameFragment"
-        android:label="PlayGameFragment" />
+        android:label="PlayGame"
+        tools:layout="@layout/fragment_play_game" />
+
     <fragment
         android:id="@+id/gameDevApplicationFragment"
         android:name="com.example.projectphoenix.GameDevApplicationFragment"
-        android:label="GameDevApplicationFragment" />
+        android:label="Developer Application"
+        tools:layout="@layout/fragment_game_dev_application" />
+
+    <fragment
+        android:id="@+id/listDevAppsFragment"
+        android:name="com.example.projectphoenix.ListDevAppsFragment"
+        android:label="Developer Applications"
+        tools:layout="@layout/fragment_list_dev_apps">
+        <action
+            android:id="@+id/action_listDevAppsFragment_to_gameScreenFragment"
+            app:destination="@id/gameScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGameFragment"
+        android:name="com.example.projectphoenix.AddGameFragment"
+        android:label="Add Game"
+        tools:layout="@layout/fragment_add_game" />
+    <fragment
+        android:id="@+id/addTournamentFragment"
+        android:name="com.example.projectphoenix.AddTournamentFragment"
+        android:label="Add Tournament"
+        tools:layout="@layout/fragment_add_tournament">
+        <action
+            android:id="@+id/action_addTournamentFragment_to_tournamentsFragment"
+            app:destination="@id/tournamentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tournamentDetailsFragment"
+        android:name="com.example.projectphoenix.TournamentDetailsFragment"
+        android:label="Tournament Details"
+        tools:layout="@layout/fragment_tournament_details">
+        <action
+            android:id="@+id/action_tournamentDetailsFragment_to_tournamentsFragment"
+            app:destination="@id/tournamentsFragment" />
+    </fragment>
 </navigation>

@@ -21,9 +21,10 @@ public class GameDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_details, container, false);
 
-    binding.gameDetailsGameTV.setText(getArguments().getString("gameTitle"));
-    binding.gameDetailsFranchiseTV.setText(getArguments().getString("gameFranchise"));
-    binding.gameDetailsPlatformTV.setText(getArguments().getString("gamePlatform"));
+        assert getArguments() != null;
+        binding.gameDetailsGameTV.setText(getArguments().getString("gameTitle"));
+        binding.gameDetailsFranchiseTV.setText(getArguments().getString("gameFranchise"));
+        binding.gameDetailsPlatformTV.setText(getArguments().getString("gamePlatform"));
 
 
     binding.PlayGameBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameDetailsFragment_to_playGameFragment));

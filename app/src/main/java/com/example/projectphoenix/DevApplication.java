@@ -1,14 +1,22 @@
+/*
+    * DevApplication:
+    *       Class that holds data for the Developer Application
+    *
+ */
+
 package com.example.projectphoenix;
 
 public class DevApplication {
-    String email;
-    String franchise;
-    String platform;
-    public DevApplication() {
 
+    private String email;
+    private String franchise;
+    private String platform;
+
+    public DevApplication() {
+        //Empty constructor required for database.
     }
 
-    public DevApplication(String emailIn, String franchiseIn, String platformIn) {
+    DevApplication(String emailIn, String franchiseIn, String platformIn) {
         this.email = emailIn;
         this.franchise = franchiseIn;
         this.platform = platformIn;

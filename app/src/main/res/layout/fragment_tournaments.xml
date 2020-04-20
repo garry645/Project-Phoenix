@@ -4,10 +4,21 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_marginTop="?attr/actionBarSize">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tournamentRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/createTournamentBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:text="@string/create_tournament"/>
 </LinearLayout>
 </layout>

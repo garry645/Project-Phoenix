@@ -21,6 +21,8 @@ import com.google.firebase.firestore.Query;
 
 import java.util.Objects;
 
+import static com.example.projectphoenix.MainActivity.user;
+
 public class TournamentsFragment extends Fragment {
 
     private FragmentTournamentsBinding binding;
@@ -32,11 +34,19 @@ public class TournamentsFragment extends Fragment {
 
         setUpRecyclerView();
 
+        if(user != null) {
+            if (user.getUserType().equals("operator")) {
+                binding.createTournamentBT.setVisibility(View.VISIBLE);
+                binding.createTournamentBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_tournamentsFragment_to_addTournamentFragment));
+            }
+        }
+
         MainActivity.mTournamentsFragment = this;
-        MainActivity.currentFragment = this;
         MainActivity.enableNavDrawer();
         return binding.getRoot();
+
     }
+
 
     private void setUpRecyclerView() {
         Query query = MainActivity.tournaments.orderBy("title", Query.Direction.ASCENDING);
@@ -68,6 +78,7 @@ public class TournamentsFragment extends Fragment {
     void onBackPressed() {
         Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.gameScreenFragment);
     }
+
 }
 
 class TournamentAdapter extends FirestoreRecyclerAdapter<Tournament, TournamentAdapter.TournamentHolder> {
@@ -79,8 +90,19 @@ class TournamentAdapter extends FirestoreRecyclerAdapter<Tournament, TournamentA
     @Override
     protected void onBindViewHolder(@NonNull TournamentHolder holder, int position, @NonNull Tournament model) {
         holder.textViewTitle.setText(model.getTitle());
+        holder.textViewGameTitle.setText(model.getGameTitle());
         holder.textViewDate.setText(model.getDate());
         holder.textViewTime.setText(model.getTime());
+        holder.v.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("title", model.getTitle());
+            bundle.putString("gameTitle", model.getGameTitle());
+            bundle.putString("date", model.getDate());
+            bundle.putString("time", model.getTime());
+            bundle.putString("maxNumPlayers", String.valueOf(model.getMaxNumPlayers()));
+            bundle.putString("currNumPlayers", String.valueOf(model.getCurrNumPlayers()));
+            Navigation.findNavController(view).navigate(R.id.action_tournamentsFragment_to_tournamentDetailsFragment, bundle);
+        });
     }
 
     @NonNull
@@ -93,13 +115,17 @@ class TournamentAdapter extends FirestoreRecyclerAdapter<Tournament, TournamentA
 
     static class TournamentHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle;
+        TextView textViewGameTitle;
         TextView textViewDate;
         TextView textViewTime;
+        View v;
 
         TournamentHolder(View itemView) {
             super(itemView);
 
+            v = itemView;
             textViewTitle = itemView.findViewById(R.id.tournamentTitleTV);
+            textViewGameTitle = itemView.findViewById(R.id.tournamentGameTitleTV);
             textViewDate = itemView.findViewById(R.id.dateTV);
             textViewTime = itemView.findViewById(R.id.timeTV);
         }

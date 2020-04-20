@@ -38,17 +38,17 @@ public class GameScreenFragment extends Fragment {
 
         MainActivity.enableNavDrawer();
         MainActivity.mGameScreenFragment = this;
-        MainActivity.currentFragment = this;
         if(mAuth.getCurrentUser() != null) {
          updateUI(mAuth.getCurrentUser());
         }
+        binding.addNewGameBT.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.addGameFragment));
 
         setUpRecyclerView();
 
         return binding.getRoot();
     }
 
-    protected static void setGameDevBT() {
+    static void setGameDevBT() {
         binding.addNewGameBT.setVisibility(View.VISIBLE);
     }
 

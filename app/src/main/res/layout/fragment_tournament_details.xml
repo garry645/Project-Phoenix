@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/tourneyDetailsIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tourneyDetailsTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tourneyDetailsIV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/title"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tourneyDetailsGameTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gameTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tourneyDetailsTitleTV"/>
+
+        <TextView
+            android:id="@+id/tourneyDetailsDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tourneyDetailsGameTitleTV"
+            android:layout_centerHorizontal="true"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/tourneyDetailsTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tourneyDetailsDateTV"
+            android:layout_centerHorizontal="true"
+            android:text="@string/time" />
+
+        <TextView
+            android:id="@+id/currNumberOfParticipantsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tourneyDetailsTimeTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="2dp"
+            android:layout_toStartOf="@+id/backslash"
+            android:text="@string/_0" />
+
+        <TextView
+            android:id="@+id/backslash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tourneyDetailsTimeTV"
+            android:layout_centerHorizontal="true"
+            android:text="@string/backslash" />
+
+        <TextView
+            android:id="@+id/tourneyDetailsMaxNumPlayersTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tourneyDetailsTimeTV"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@+id/backslash"
+            android:text="@string/_16" />
+
+        <Button
+            android:id="@+id/tourneyDetailsJoinTourneyBT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/backslash"
+            android:layout_centerHorizontal="true"
+            android:text="@string/join_tournament"
+            android:textAllCaps="false"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

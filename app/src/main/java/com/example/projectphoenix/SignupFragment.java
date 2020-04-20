@@ -39,11 +39,11 @@ public class SignupFragment extends Fragment {
                 inflater, R.layout.fragment_signup, container, false);
 
         //disableNavDrawer();
-        MainActivity.currentFragment = this;
+        MainActivity.mSignupFragment = this;
         MainActivity.disableNavDrawer();
 
         binding.signUpButton.setOnClickListener(view -> {
-            email = binding.signupEmailET.getEditText().getText().toString();
+            email = binding.signupEmailET.getEditText().getText().toString().trim().toLowerCase();
             username = Objects.requireNonNull(binding.signupUsernameET.getEditText()).getText().toString();
             age = binding.signupAgeET.getEditText().getText().toString();
 
@@ -84,21 +84,25 @@ public class SignupFragment extends Fragment {
     private boolean validateForm() {
         boolean valid = true;
         if (email.equals("")) {
-            binding.signupEmailET.setError("Email must not be empty!");
+            Objects.requireNonNull(binding.signupEmailET.getEditText()).setError("Email must not be empty!");
             valid = false;
         }
-        if (binding.signupPasswordET.getEditText().getText().toString().equals("")) {
-            binding.signupPasswordET.setError("Password must not be empty!");
+        if (Objects.requireNonNull(binding.signupPasswordET.getEditText()).getText().toString().equals("")) {
+            binding.signupPasswordET.getEditText().setError("Password must not be empty!");
             valid = false;
         }
-        if (binding.signupUsernameET.getEditText().getText().toString().equals("")) {
-            binding.signupUsernameET.setError("Username must not be empty!");
+        if (Objects.requireNonNull(binding.signupUsernameET.getEditText()).getText().toString().equals("")) {
+            binding.signupUsernameET.getEditText().setError("Username must not be empty!");
             valid = false;
         }
-        if (binding.signupAgeET.getEditText().getText().toString().equals("")) {
-            binding.signupAgeET.setError("Age must not be empty");
+        if (Objects.requireNonNull(binding.signupAgeET.getEditText()).getText().toString().equals("")) {
+            binding.signupAgeET.getEditText().setError("Age must not be empty");
             valid = false;
         }
         return valid;
+    }
+
+    void onBackPressed() {
+        Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.loginFragment);
     }
 }

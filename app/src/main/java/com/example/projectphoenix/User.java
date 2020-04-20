@@ -9,6 +9,8 @@ public class User {
     private int age;
     private ArrayList<User> friends;
     private int gamerPoints;
+    private String franchiseName;
+    private String platform;
 
 
     //Empty constructor required for Firebase
@@ -23,6 +25,24 @@ public class User {
         this.friends = new ArrayList<User>();
         this.userType = "user";
         this.gamerPoints = 0;
+        this.franchiseName = null;
+        this.platform = null;
+    }
+
+    public String getFranchiseName() {
+        return franchiseName;
+    }
+
+    public void setFranchiseName(String franchiseName) {
+        this.franchiseName = franchiseName;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 
     public int getGamerPoints() {

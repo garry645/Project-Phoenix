@@ -1,7 +1,6 @@
 package com.example.projectphoenix;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,40 +8,50 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.projectphoenix.databinding.FragmentLoginBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
-//import static com.example.projectphoenix.MainActivity.enableNavDrawer;
-import static com.example.projectphoenix.MainActivity.mAuth;
 import static com.example.projectphoenix.MainActivity.setUser;
-import static com.example.projectphoenix.MainActivity.user;
-import static com.example.projectphoenix.MainActivity.userRef;
-import static com.example.projectphoenix.MainActivity.userSnapshot;
-import static com.example.projectphoenix.MainActivity.users;
+
+//import static com.example.projectphoenix.MainActivity.enableNavDrawer;
 
 public class LoginFragment extends Fragment {
 
     private String email;
     private FragmentLoginBinding binding;
+    private FirebaseFirestore db;
+    private CollectionReference users;
+    private FirebaseAuth mAuth;
+
+    private static DocumentReference userRef;
+    private static DocumentSnapshot userSnapshot;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_login, container, false);
-
+        db = FirebaseFirestore.getInstance();
+        users = db.collection("users");
+        mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
-        MainActivity.currentFragment = this;
+        MainActivity.mLoginFragment = this;
 
         MainActivity.disableNavDrawer();
 
         binding.loginBT.setOnClickListener(view -> {
-            email = binding.loginEmailET.getEditText().getText().toString().trim().toLowerCase();
+            email = Objects.requireNonNull(binding.loginEmailET.getEditText()).getText().toString().trim().toLowerCase();
             login();
         });
 
@@ -60,26 +69,40 @@ public class LoginFragment extends Fragment {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             userRef = users.document(email);
-                            userRef.get().addOnCompleteListener(task1 -> {
-                                userSnapshot = task1.getResult();
-                                if (userSnapshot != null) {
-                                    user = userSnapshot.toObject(User.class);
+                        userRef.get().addOnSuccessListener(documentSnapshot -> {
+                                User user = documentSnapshot.toObject(User.class);
+                                if(user != null) {
                                     setUser(user);
-                                    //enableNavDrawer((AppCompatActivity) getActivity());
-                                    Navigation.findNavController(Objects.requireNonNull(this.getView())).navigate(R.id.action_loginFragment_to_gameScreenFragment);
+                                    Navigation.findNavController(Objects.requireNonNull(this.getActivity()), R.id.navHostFragment).navigate(R.id.action_loginFragment_to_gameScreenFragment);
+                                } else {
+                                    Toast.makeText(getContext(), "User is null", Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                                });
+                          /*  //userSnapshot = task1.getResult();
+                            if (task1.getResult() != null) {
+                                User user = task1.getResult().toObject(User.class);
+                                setUser(user);
+                                //MainActivity.enableNavDrawer((AppCompatActivity) getActivity());
+                                Navigation.findNavController(Objects.requireNonNull(this.getView())).navigate(R.id.action_loginFragment_to_gameScreenFragment);
+                            }*/
 
                         } else {
-                            Log.w("Tag", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(this.getActivity(), String.valueOf(task.getException()),
-                                    Toast.LENGTH_LONG).show();
+                            try {
+                                throw Objects.requireNonNull(task.getException());
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                Toast.makeText(getContext(), "Invalid email or password!",
+                                        Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                Toast.makeText(getContext(), "Error loggin in user",
+                                        Toast.LENGTH_LONG).show();
+                            }
                             binding.loginBT.setEnabled(true);
                         }
                     });
         } else {
             binding.loginBT.setEnabled(true);
         }
+
     }
 
     private boolean validateForm() {
@@ -88,11 +111,15 @@ public class LoginFragment extends Fragment {
             binding.loginEmailET.setError("Email must not be empty!");
             valid = false;
         }
-        if (binding.loginPasswordET.getEditText().getText().toString().trim().equals("")) {
+        if (Objects.requireNonNull(binding.loginPasswordET.getEditText()).getText().toString().trim().equals("")) {
             binding.loginPasswordET.setError("Password must not be empty!");
             valid = false;
         }
         return valid;
+    }
+
+    void onBackPressed() {
+        Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.signupFragment);
     }
 }
 

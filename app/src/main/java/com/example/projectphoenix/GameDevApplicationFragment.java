@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
+import static com.example.projectphoenix.MainActivity.user;
+
 public class GameDevApplicationFragment extends Fragment {
     private FirebaseFirestore db;
 
@@ -26,16 +28,30 @@ public class GameDevApplicationFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_dev_application, container, false);
         db = FirebaseFirestore.getInstance();
         binding.submitAppBT.setOnClickListener(view -> {
-            String email = Objects.requireNonNull(binding.devAppEmailTV.getEditText()).getText().toString().toLowerCase().trim();
+            String email = user.getEmail();
             String franchise = Objects.requireNonNull(binding.devAppFranchiseTV.getEditText()).getText().toString().toLowerCase().trim();
-            String platform = Objects.requireNonNull(binding.devAppPlatformTV.getEditText()).getText().toString().toLowerCase().trim();
-            DevApplication devApplication = new DevApplication(email, franchise, platform);
-            db.collection("DevApps").document(email).set(devApplication).addOnCompleteListener(task -> {
-                Toast.makeText(getContext(), "Application submitted successfully!", Toast.LENGTH_LONG).show();
-                Navigation.findNavController(view).navigate(R.id.gameScreenFragment);
-            });
-
+            String platform = Objects.requireNonNull(binding.devAppPlatformTV.getEditText()).getText().toString().trim();
+            if(validateForm(franchise, platform)) {
+                DevApplication devApplication = new DevApplication(email, franchise, platform);
+                db.collection("devApps").document(email).set(devApplication).addOnCompleteListener(task -> {
+                    Toast.makeText(getContext(), "Application submitted successfully!", Toast.LENGTH_LONG).show();
+                    Navigation.findNavController(view).navigate(R.id.gameScreenFragment);
+                });
+            }
         });
         return binding.getRoot();
+    }
+
+    private boolean validateForm(String franchiseIn, String platformIn) {
+        boolean valid = true;
+        if(franchiseIn.equals("")) {
+            Objects.requireNonNull(binding.devAppFranchiseTV.getEditText()).setError("Franchise name must not be empty!");
+            valid = false;
+        }
+        if(platformIn.equals("")) {
+            Objects.requireNonNull(binding.devAppPlatformTV.getEditText()).setError("You must have a platform!");
+            valid = false;
+        }
+        return valid;
     }
 }

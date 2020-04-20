@@ -12,7 +12,6 @@
     <string name="tournaments">Tournaments</string>
     <string name="gameFranchise">GameFranchise</string>
     <string name="gameTitle">GameTitle</string>
-    <string name="platform">Platform</string>
     <string name="title">Title</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
@@ -25,4 +24,23 @@
     <string name="platformHint">Platform:</string>
     <string name="submit_application">Submit Application</string>
     <string name="add_new_game">Add New Game</string>
+    <string name="developer_applications">Developer Applications</string>
+    <string name="platform">Platform</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="franchise">Franchise</string>
+    <string name="email">Email</string>
+    <string name="name">Name:</string>
+    <string name="add_game">Add Game</string>
+    <string name="create_tournament">Create Tournament</string>
+    <string name="title_hint">Title:</string>
+    <string name="date_hint">Date:</string>
+    <string name="time_hint">Time:</string>
+    <string name="max_number_of_players_hint">Max Number of Players:</string>
+    <string name="description">Description:</string>
+    <string name="_16">16</string>
+    <string name="backslash">/</string>
+    <string name="_0">0</string>
+    <string name="join_tournament">Join Tournament</string>
+    <string name="game_title_hint">Game Title:</string>
 </resources>
