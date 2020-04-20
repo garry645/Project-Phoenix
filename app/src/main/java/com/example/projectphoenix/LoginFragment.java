@@ -13,36 +13,36 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.projectphoenix.databinding.FragmentLoginBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
 import static com.example.projectphoenix.MainActivity.setUser;
 
-//import static com.example.projectphoenix.MainActivity.enableNavDrawer;
-
+/**
+ * LoginFragment:
+ * Fragment that handles all of the login logic. Uses Google Authentication to verify that
+ * the email has an account associated with this application.
+ */
 public class LoginFragment extends Fragment {
 
     private String email;
     private FragmentLoginBinding binding;
-    private FirebaseFirestore db;
     private CollectionReference users;
     private FirebaseAuth mAuth;
 
     private static DocumentReference userRef;
-    private static DocumentSnapshot userSnapshot;
 
+    //Method to create the LoginFragment screen.
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_login, container, false);
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         users = db.collection("users");
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
@@ -55,13 +55,17 @@ public class LoginFragment extends Fragment {
             login();
         });
 
-        //MainActivity.disableNavDrawer();
-
         binding.loginSignupBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_signupFragment));
 
         return binding.getRoot();
     }
 
+    /**
+     * login:
+     * Method grabs the given email and password from the User and attempts to login. If the
+     * login attempt is successful then the User is sent to the GameScreenFragment else the
+     * appropriate errors are set.
+     */
     private void login() {
         binding.loginBT.setEnabled(false);
         if (validateForm()) {
@@ -69,15 +73,15 @@ public class LoginFragment extends Fragment {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             userRef = users.document(email);
-                        userRef.get().addOnSuccessListener(documentSnapshot -> {
+                            userRef.get().addOnSuccessListener(documentSnapshot -> {
                                 User user = documentSnapshot.toObject(User.class);
-                                if(user != null) {
+                                if (user != null) {
                                     setUser(user);
                                     Navigation.findNavController(Objects.requireNonNull(this.getActivity()), R.id.navHostFragment).navigate(R.id.action_loginFragment_to_gameScreenFragment);
                                 } else {
                                     Toast.makeText(getContext(), "User is null", Toast.LENGTH_SHORT).show();
                                 }
-                                });
+                            });
                           /*  //userSnapshot = task1.getResult();
                             if (task1.getResult() != null) {
                                 User user = task1.getResult().toObject(User.class);
@@ -93,7 +97,7 @@ public class LoginFragment extends Fragment {
                                 Toast.makeText(getContext(), "Invalid email or password!",
                                         Toast.LENGTH_LONG).show();
                             } catch (Exception e) {
-                                Toast.makeText(getContext(), "Error loggin in user",
+                                Toast.makeText(getContext(), "Error logging in user",
                                         Toast.LENGTH_LONG).show();
                             }
                             binding.loginBT.setEnabled(true);
@@ -105,6 +109,12 @@ public class LoginFragment extends Fragment {
 
     }
 
+    /**
+     * validateForm:
+     * Verifies that the given email or password is not null.
+     *
+     * @return true or false depending on if the given values are valid.
+     */
     private boolean validateForm() {
         boolean valid = true;
         if (email.equals("")) {

@@ -2,6 +2,10 @@ package com.example.projectphoenix;
 
 import java.util.ArrayList;
 
+/**
+ * User:
+ * Data class that holds all the information for the User object.
+ */
 public class User {
     private String email;
     private String username;

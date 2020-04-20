@@ -21,10 +21,16 @@ import java.util.Random;
 import static com.example.projectphoenix.MainActivity.user;
 import static com.example.projectphoenix.MainActivity.users;
 
+/**
+ * PlayGameFragment:
+ * Simple Fragment made to simulate playing the games listed in the GameScreenFragment
+ */
 public class PlayGameFragment extends Fragment {
     private FragmentPlayGameBinding binding;
     private User opponent;
 
+
+    //Method to create PlayGameFragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_play_game, container, false);
 
@@ -38,9 +44,14 @@ public class PlayGameFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * findMatch:
+     * Method that sets the given User's information in the UI and then finds another
+     * User object in the database for the given User to play against.
+     */
     private void findMatch() {
         binding.newGameBT.setVisibility(View.INVISIBLE);
-        binding.P2UNTV.setText("Finding user...");
+        binding.P2UNTV.setText(R.string.finding_user);
         binding.P2GPTV.setVisibility(View.GONE);
         binding.P1WinLoseTV.setVisibility(View.GONE);
         binding.P2WinLoseTV.setVisibility(View.GONE);
@@ -64,25 +75,31 @@ public class PlayGameFragment extends Fragment {
         });
     }
 
+    /**
+     * playGame:
+     * Method that chooses the winner randomly and then rewards the winner with
+     * a "gamerPoint"
+     *
+     * @param user1 The current User using the app
+     * @param user2 The User randomly fetched from the database
+     */
     private void playGame(User user1, User user2) {
         int winner = new Random().nextInt(2);
 
-        if(winner == 0) {
+        if (winner == 0) {
             users.document(user1.getEmail()).update("gamerPoints", user1.getGamerPoints() + 1);
             user.setGamerPoints(user.getGamerPoints() + 1);
             binding.P1GPTV.setText(String.valueOf(user.getGamerPoints()));
-            binding.P1WinLoseTV.setText("Winner");
-            binding.P2WinLoseTV.setText("Loser");
+            binding.P1WinLoseTV.setText(R.string.winner);
+            binding.P2WinLoseTV.setText(R.string.loser);
         } else {
             users.document(user2.getEmail()).update("gamerPoints", user2.getGamerPoints() + 1);
-            binding.P2WinLoseTV.setText("Winner");
-            binding.P1WinLoseTV.setText("Loser");
+            binding.P2WinLoseTV.setText(R.string.winner);
+            binding.P1WinLoseTV.setText(R.string.loser);
         }
         binding.P2WinLoseTV.setVisibility(View.VISIBLE);
         binding.P1WinLoseTV.setVisibility(View.VISIBLE);
         binding.newGameBT.setVisibility(View.VISIBLE);
-        binding.newGameBT.setOnClickListener(view -> {
-            findMatch();
-        });
+        binding.newGameBT.setOnClickListener(view -> findMatch());
     }
 }

@@ -43,4 +43,7 @@
     <string name="_0">0</string>
     <string name="join_tournament">Join Tournament</string>
     <string name="game_title_hint">Game Title:</string>
+    <string name="finding_user">Finding user...</string>
+    <string name="loser">Loser</string>
+    <string name="winner">Winner</string>
 </resources>

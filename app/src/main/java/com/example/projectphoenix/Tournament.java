@@ -2,6 +2,10 @@ package com.example.projectphoenix;
 
 import java.util.ArrayList;
 
+/**
+ * Tournament:
+ * Data class that holds all the information for the Tournament object.
+ */
 public class Tournament {
     private String title;
     private String gameTitle;

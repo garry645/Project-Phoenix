@@ -1,5 +1,8 @@
 package com.example.projectphoenix;
-
+/**
+ *   Game:
+ *       Data class that holds data for the Game object
+ */
 public class Game {
     private String gameFranchise;
     private String gamePlatform;

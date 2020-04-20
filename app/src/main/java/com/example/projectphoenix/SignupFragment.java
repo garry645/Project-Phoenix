@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -19,12 +18,14 @@ import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Objects;
 
-//import static com.example.projectphoenix.MainActivity.disableNavDrawer;
-//import static com.example.projectphoenix.MainActivity.enableNavDrawer;
 import static com.example.projectphoenix.MainActivity.mAuth;
 import static com.example.projectphoenix.MainActivity.setUser;
 import static com.example.projectphoenix.MainActivity.users;
 
+/**
+ * SignupFragment:
+ * Fragment that allows users to register for the app.
+ */
 public class SignupFragment extends Fragment {
 
     private String email;
@@ -33,6 +34,7 @@ public class SignupFragment extends Fragment {
     private FragmentSignupBinding binding;
     private static DocumentReference userRef;
 
+    //Method to create the SignupFragment screen.
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(
@@ -43,9 +45,9 @@ public class SignupFragment extends Fragment {
         MainActivity.disableNavDrawer();
 
         binding.signUpButton.setOnClickListener(view -> {
-            email = binding.signupEmailET.getEditText().getText().toString().trim().toLowerCase();
+            email = Objects.requireNonNull(binding.signupEmailET.getEditText()).getText().toString().trim().toLowerCase();
             username = Objects.requireNonNull(binding.signupUsernameET.getEditText()).getText().toString();
-            age = binding.signupAgeET.getEditText().getText().toString();
+            age = Objects.requireNonNull(binding.signupAgeET.getEditText()).getText().toString();
 
             signup();
         });
@@ -56,7 +58,11 @@ public class SignupFragment extends Fragment {
         return binding.getRoot();
     }
 
-
+    /**
+     * signup:
+     * Method that grabs the User's given info, validates it, and then attempts to create a new
+     * account for the application.
+     */
     private void signup() {
         binding.signUpButton.setEnabled(false);
         if (validateForm()) {
@@ -80,7 +86,11 @@ public class SignupFragment extends Fragment {
         }
     }
 
-
+    /**
+     * validateForm:
+     *
+     * @return Returns true or false if given credentials are valid.
+     */
     private boolean validateForm() {
         boolean valid = true;
         if (email.equals("")) {

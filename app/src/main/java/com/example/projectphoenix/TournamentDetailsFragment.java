@@ -18,9 +18,14 @@ import java.util.Objects;
 
 import static com.example.projectphoenix.MainActivity.user;
 
+/**
+ * TournamentDetailsFragment:
+ * Fragment that lists all the details of the given Tournament object.
+ */
 public class TournamentDetailsFragment extends Fragment {
-    FragmentTournamentDetailsBinding binding;
+    private FragmentTournamentDetailsBinding binding;
 
+    //Method to create the TournamentDetailsFragment screen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tournament_details, container, false);

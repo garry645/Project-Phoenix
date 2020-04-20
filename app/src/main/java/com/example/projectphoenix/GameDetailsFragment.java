@@ -11,15 +11,16 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.projectphoenix.databinding.FragmentGameDetailsBinding;
-
-import static com.example.projectphoenix.MainActivity.user;
-
+/**
+ * GameDetailsFragment:
+ * Shows details of the chosen game. If "Join Match" button is pressed then User is placed
+ * in a game.
+ */
 public class GameDetailsFragment extends Fragment {
 
-    FragmentGameDetailsBinding binding;
+    //Method to create the GameDetailsFragment screen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_details, container, false);
+        com.example.projectphoenix.databinding.FragmentGameDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_details, container, false);
 
         assert getArguments() != null;
         binding.gameDetailsGameTV.setText(getArguments().getString("gameTitle"));
@@ -27,7 +28,7 @@ public class GameDetailsFragment extends Fragment {
         binding.gameDetailsPlatformTV.setText(getArguments().getString("gamePlatform"));
 
 
-    binding.PlayGameBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameDetailsFragment_to_playGameFragment));
-    return binding.getRoot();
+        binding.PlayGameBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameDetailsFragment_to_playGameFragment));
+        return binding.getRoot();
     }
 }

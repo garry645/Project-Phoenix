@@ -1,11 +1,3 @@
-/*
- * AddGameFragment:
- *      Shows a form for the Developer to fill out
- *      User fills out form and presses "Create Game" button
- *      Form is validated, if there is an error then it is shown, else new Game object is created
- *      New Game object is added to database
- */
-
 package com.example.projectphoenix;
 
 import android.os.Bundle;
@@ -25,6 +17,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
+/**
+ * AddGameFragment:
+ *      Shows a form for the Developer to fill out
+ *      User fills out form and presses "Create Game" button
+ *      Form is validated, if there is an error then it is shown, else new Game object is created
+ *      New Game object is added to database
+ */
+
 public class AddTournamentFragment extends Fragment {
 
     //Binding object holds all of AddTournamentFragments View objects
@@ -37,7 +37,6 @@ public class AddTournamentFragment extends Fragment {
         binding.createTournamentBT.setOnClickListener(view -> addNewTournament());
         return binding.getRoot();
     }
-
 
     /**
      *  addNewTournament:

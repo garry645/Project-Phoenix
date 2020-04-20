@@ -1,11 +1,3 @@
-/*
- * AddGameFragment:
- *      Shows a form for the Developer to fill out
- *      User fills out form and presses "Create Game" button
- *      Form is validated, if there is an error then it is shown, else new Game object is created
- *      New Game object is added to database
- */
-
 package com.example.projectphoenix;
 
 import android.os.Bundle;
@@ -26,11 +18,17 @@ import java.util.Objects;
 
 import static com.example.projectphoenix.MainActivity.user;
 
+/**
+ * AddGameFragment:
+ *      Shows a form for the Developer to fill out
+ *      User fills out form and presses "Create Game" button
+ *      Form is validated, if there is an error then it is shown, else new Game object is created
+ *      New Game object is added to database
+ */
 public class AddGameFragment extends Fragment {
 
     //Binding holds all of the fragments View objects
-    FragmentAddGameBinding binding;
-
+    private FragmentAddGameBinding binding;
 
     //Method to create AddGameFragment screen
     @Override
@@ -43,8 +41,9 @@ public class AddGameFragment extends Fragment {
     }
 
     /**
-     * Checks the input of the name EditText and verifies it is not null, if it is null then an error
-     * is set on the EditText else it creates a new Game object and adds it to the database.
+     * addGame:
+     *      Checks the input of the name EditText and verifies it is not null, if it is null then an error
+     *      is set on the EditText else it creates a new Game object and adds it to the database.
      */
     private void addGame() {
         binding.addGameBT.setOnClickListener(view -> {

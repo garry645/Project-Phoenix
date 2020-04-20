@@ -23,18 +23,23 @@ import java.util.Objects;
 
 import static com.example.projectphoenix.MainActivity.user;
 
+/**
+ * TournamentsFragment:
+ * Fragment that lists all of the currently available Tournaments in the database.
+ */
 public class TournamentsFragment extends Fragment {
 
     private FragmentTournamentsBinding binding;
     private TournamentAdapter adapter;
 
+    //Method to create the TournamentsFragment screen.
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tournaments, container, false);
 
         setUpRecyclerView();
 
-        if(user != null) {
+        if (user != null) {
             if (user.getUserType().equals("operator")) {
                 binding.createTournamentBT.setVisibility(View.VISIBLE);
                 binding.createTournamentBT.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_tournamentsFragment_to_addTournamentFragment));
@@ -48,6 +53,11 @@ public class TournamentsFragment extends Fragment {
     }
 
 
+    /**
+     * setUpRecyclerView:
+     * Method that feeds data from the database to the adapter to be shown in the RecyclerView
+     * object.
+     */
     private void setUpRecyclerView() {
         Query query = MainActivity.tournaments.orderBy("title", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Tournament> options = new FirestoreRecyclerOptions.Builder<Tournament>()
@@ -62,13 +72,14 @@ public class TournamentsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-
+    //Method that tells the adapter to start listening for data
     @Override
     public void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
+    //Method that tells the adapter to stop listening for data.
     @Override
     public void onStop() {
         super.onStop();
@@ -81,6 +92,10 @@ public class TournamentsFragment extends Fragment {
 
 }
 
+/**
+ * TournamentAdapter:
+ * Class that takes data from the database and converts it to fit into the tournament_card_layout object
+ */
 class TournamentAdapter extends FirestoreRecyclerAdapter<Tournament, TournamentAdapter.TournamentHolder> {
 
     TournamentAdapter(@NonNull FirestoreRecyclerOptions<Tournament> options) {

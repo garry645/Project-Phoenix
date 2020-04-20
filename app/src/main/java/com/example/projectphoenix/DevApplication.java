@@ -1,11 +1,8 @@
-/*
-    * DevApplication:
-    *       Class that holds data for the Developer Application
-    *
- */
-
 package com.example.projectphoenix;
-
+/**
+ * DevApplication:
+ *       Data class that holds data for the DeveloperApplication object
+ */
 public class DevApplication {
 
     private String email;
